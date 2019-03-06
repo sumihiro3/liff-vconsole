@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<title>My LIFF app</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+	<!-- vConsole -->
+	<script src="./lib/vconsole.min.js"></script>
+	<!-- LIFF -->
+	<script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
+</head>
+<body>
+</body>
+<script>
+window.onload = function(){
+	initVConsole();
+	initLiff();
+
+}
+// Initialize vConsole
+function initVConsole() {
+	window.vConsole = new window.VConsole({
+		defaultPlugins: ['system', 'network', 'element', 'storage'],
+		maxLogNumber: 1000,
+		onReady: function() {
+			console.log('vConsole is ready.');
+		},
+		onClearLog: function() {
+			console.log('on clearLog');
+		}
+	});
+}
+
+// Initialize LIFF
+function initLiff() {
+	console.log('going to initialize LIFF');
+	liff.init(
+		data => {
+			console.log('LIFF initialized!');
+			// Now you can call LIFF API
+			const userId = data.context.userId;
+			liff.getProfile().then(profile => {
+				const userDisplayName = profile.displayName
+				console.info('User name is', userDisplayName);
+			})
+			.catch((err) => {
+				console.error('LIFF getProfile failed', err);
+			});
+		},
+		err => {
+			console.error('LIFF initialization failed', err);
+		}
+	);
+}
+</script>
+</html>
+

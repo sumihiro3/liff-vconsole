@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-	<title>My LIFF app</title>
+	<title>My LIFF app with vConsole</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
 	<!-- vConsole -->
@@ -72,7 +72,6 @@
 window.onload = function(){
 	initVConsole();
 	initLiff();
-
 }
 // Initialize vConsole
 function initVConsole() {
@@ -81,7 +80,6 @@ function initVConsole() {
 		maxLogNumber: 1000,
 		onReady: function() {
 			console.log('vConsole is ready.');
-			// initLiff();
 		},
 		onClearLog: function() {
 			console.log('on clearLog');
